@@ -4,12 +4,15 @@
   "description": "Curso de NodeJS com dicas essenciais",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "aula-nodejs"
   },
   "author": "vine96",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }

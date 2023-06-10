@@ -4,6 +4,7 @@ const UserModel = require('../src/models/user.model')
 const app = express();
 app.use(express.json());
 
+// Find all users
 app.get('/users', async (req, res) => {
     try {
         const users = await UserModel.find({});
@@ -13,6 +14,7 @@ app.get('/users', async (req, res) => {
     }
 });
 
+// Find user by ID
 app.get('/users/:id', async (req, res) => {
     try {
         const id = req.params.id;
@@ -23,6 +25,7 @@ app.get('/users/:id', async (req, res) => {
     }
 });
 
+// Create user
 app.post('/users', async (req, res) => {
     try {
         const user = await UserModel.create(req.body);
@@ -33,10 +36,22 @@ app.post('/users', async (req, res) => {
     }
 });
 
+// Update user by ID
 app.patch('/users/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true});
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+// Delete user by ID
+app.delete('/users/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await UserModel.findByIdAndDelete(id);
         res.status(200).json(user);
     } catch (error) {
         res.status(500).send(error.message);

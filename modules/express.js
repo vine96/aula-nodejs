@@ -15,7 +15,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/views/users', async (req, res) => {
-    res.render("index");
+    const users = await UserModel.find({});
+    res.render("index", {users});
 });
 
 // Find all users
